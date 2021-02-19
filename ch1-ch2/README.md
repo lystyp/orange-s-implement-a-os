@@ -20,4 +20,8 @@
 		3. 我需要自己做一個開機碟模仿MBR，照書裡的步驟用C:\Program Files\Bochs-2.6.11裡的bximage.exe建立一個floppy disk image
 		4. 把MBR的assembly code寫好，用nasm轉成bin檔(就是機器語言)，指令 : nasm boot.asm -o boot.bin
 		   nasm下載網址 : https://www.nasm.us/pub/nasm/releasebuilds/2.15.05/win64/
- 
+		5. 把bin檔寫進剛剛建的image裡，課本裡說用rawrite，但windows好像不支援，可以用一個工具叫dd for windows : http://www.chrysocome.net/dd  
+		   他就是linux的dd指令做成windows版本，下指令 : dd if=boot.bin of=a.img bs=512 count=1  
+		   課本裡面還有參數 conv=notrunc，但dd for windows好像不支援，就不理他了
+		6. 修改config讓他拿掉原本的disk掛載新寫好的disk image(詳細改了什麼看commit就知道)
+		7. 模仿dlxlinux建一個run.bat小改一下，跑這個bat就可以了~~~可以看一下bat裡面在幹嘛
